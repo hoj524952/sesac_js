@@ -1,0 +1,15 @@
+img {
+    display:block;
+    margin:0 auto;
+    width:300px;
+}
+
+h1 {
+    text-align: center;
+    color:rgb(226, 144, 43)
+}
+
+h2{
+    text-align: center;
+    font-style:italic;
+}
