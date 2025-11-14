@@ -1,7 +1,8 @@
 img {
     display:block;
     margin:0 auto;
-    width:300px;
+    text-align: center;
+    width:600px;
 }
 
 h1 {
@@ -10,6 +11,10 @@ h1 {
 }
 
 h2{
-    text-align: center;
+    text-align:center;
     font-style:italic;
+}
+
+#link_pre_next {
+    text-align: center;
 }
