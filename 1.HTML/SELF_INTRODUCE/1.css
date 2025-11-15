@@ -1,20 +1,40 @@
 img {
     display:block;
-    margin:0 auto;
+    margin: 20px auto;
     text-align: center;
     width:600px;
+    border-radius: 10px;
 }
 
 h1 {
     text-align: center;
-    color:rgb(226, 144, 43)
+    color:rgb(226, 144, 43);
+    font-family: 'Arial', sans-serif;
+    margin-top: 30px;
+    line-height: 1.5
 }
-
+.info {
+    text-align:left;
+}
 h2{
-    text-align:center;
+    text-align:left;
     font-style:italic;
+    font-family: 'Georgia', serif;
+    margin: 0 auto;
+    width:600px;
 }
 
 #link_pre_next {
     text-align: center;
+    margin-top: 30px;
+}
+
+#link_pre_next {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#link_pre_next a:hover{
+    background-color: bisque;
 }
