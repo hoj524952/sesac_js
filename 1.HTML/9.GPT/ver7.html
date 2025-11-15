@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>자리 랜덤 배치</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f3f3f3;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    background-image: url("C:/SESAC_src/sesac_js/1.HTML/9.GPT/images/교실.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(0,0,0,0.3);
+    background-blend-mode: darken;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .monitor {
+    width: 600px;
+    height: 180px;
+    background: rgba(17,17,17,0.9);
+    color: #00ff9d;
+    margin: 0 auto 40px auto;
+    border-radius: 12px;
+    border: 6px solid #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    font-weight: bold;
+    box-shadow: 
+      0 0 10px rgba(0,0,0,0.4),
+      0 0 25px rgba(0,0,0,0.4) inset;
+    position: relative;
+  }
+
+  .monitor::after {
+    content: "";
+    position: absolute;
+    bottom: -25px;
+    width: 140px;
+    height: 25px;
+    background: #333;
+    border-radius: 0 0 8px 8px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  #countdown {
+    font-size: 48px;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-bottom: 20px;
+    animation: pulse 1s infinite;
+  }
+
+  @keyframes pulse {
+    0%,100% { transform: scale(1); opacity:1; }
+    50% { transform: scale(1.2); opacity:0.6; }
+  }
+
+  .row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+
+  .seat {
+    width: 120px;
+    height: 80px;
+    background: rgba(255,255,255,0.9);
+    border: 2px solid #888;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+    cursor: text;
+  }
+
+  .seat[contenteditable="true"]:focus {
+    outline: 2px solid #4a90e2;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    background: #4a90e2;
+    color: white;
+    transition: 0.2s;
+    margin-top: 20px;
+  }
+
+  button:hover { background: #357ac9; }
+
+</style>
+</head>
+<body>
+
+<div class="monitor">
+  13명 자리 랜덤 배치
+</div>
+
+<div id="countdown"></div>
+
+<div class="row">
+  <div class="seat" id="seat1" contenteditable="true"></div>
+  <div class="seat" id="seat2" contenteditable="true"></div>
+  <div class="seat" id="seat3" contenteditable="true"></div>
+  <div class="seat" id="seat4" contenteditable="true"></div>
+</div>
+<div class="row">
+  <div class="seat" id="seat5" contenteditable="true"></div>
+  <div class="seat" id="seat6" contenteditable="true"></div>
+  <div class="seat" id="seat7" contenteditable="true"></div>
+  <div class="seat" id="seat8" contenteditable="true"></div>
+</div>
+<div class="row">
+  <div class="seat" id="seat9" contenteditable="true"></div>
+  <div class="seat" id="seat10" contenteditable="true"></div>
+  <div class="seat" id="seat11" contenteditable="true"></div>
+  <div class="seat" id="seat12" contenteditable="true"></div>
+  <div class="seat" id="seat13" contenteditable="true"></div>
+</div>
+
+<button onclick="startShuffle()">자리 섞기</button>
+
+<script>
+let students = [
+  "학생1","학생2","학생3","학생4","학생5",
+  "학생6","학생7","학생8","학생9","학생10",
+  "학생11","학생12","학생13"
+];
+
+let initialSeats = [...students];
+const countdownEl = document.getElementById("countdown");
+
+// 초기 자리 화면에 표시
+function displaySeats() {
+  students.forEach((name,index)=>{
+    const seat = document.getElementById(`seat${index+1}`);
+    seat.innerText = name;
+  });
+}
+
+// 자리 섞기 (초깃자리와 겹치지 않게)
+function shuffleDifferent() {
+  // 먼저 현재 화면상의 이름을 학생 배열에 반영 (사용자가 수정한 이름 반영)
+  students = [];
+  for(let i=1;i<=13;i++){
+    let val = document.getElementById(`seat${i}`).innerText.trim();
+    if(val==="") val = `학생${i}`;
+    students.push(val);
+  }
+
+  let shuffled;
+  let valid = false;
+  while(!valid){
+    shuffled = [...students].sort(()=>Math.random()-0.5);
+    valid = true;
+    for(let i=0;i<shuffled.length;i++){
+      if(shuffled[i]===initialSeats[i]){
+        valid = false;
+        break;
+      }
+    }
+  }
+  // 화면에 반영
+  shuffled.forEach((name,index)=>{
+    document.getElementById(`seat${index+1}`).innerText = name;
+  });
+  localStorage.setItem("seats", JSON.stringify(shuffled));
+}
+
+// 자리 섞기 버튼 클릭 → 3초 카운트 후 섞기
+function startShuffle(){
+  let time = 3;
+  countdownEl.innerText = time;
+  const interval = setInterval(()=>{
+    time--;
+    if(time>0){
+      countdownEl.innerText = time;
+    } else {
+      clearInterval(interval);
+      countdownEl.innerText="";
+      shuffleDifferent();
+    }
+  },1000);
+}
+
+// 페이지 로드 시 저장된 자리 불러오기
+window.onload = ()=>{
+  const saved = JSON.parse(localStorage.getItem("seats"));
+  if(saved){
+    students = saved;
+    initialSeats = [...students];
+  }
+  displaySeats();
+}
+</script>
+
+</body>
+</html>
