@@ -1,0 +1,39 @@
+body{
+    font-family: 'Arial' , serif;
+    background-color: #fef6f0;
+    color:#333;
+    margin:0;
+    padding: 20px;
+}
+ul{
+    list-style-type:square;
+    padding-left:3px;
+}
+
+h1{
+    background-color: blanchedalmond;
+    color:rgb(78, 20, 153);
+    padding: 30px;
+    text-align:center;
+}
+
+nav{
+    text-align: center;
+}
+
+footer{
+    text-align: center;
+}
+
+h2{
+    padding: 10px 15px;
+    margin-bottom: 30px;
+    background-color: rgb(164, 97, 9);
+    width:300px;
+}
+
+li{
+    margin: 15px 0;
+    font-size: 20px;
+}
+

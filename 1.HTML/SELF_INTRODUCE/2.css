@@ -1,0 +1,74 @@
+body {
+    font-family: "Pretendard", serif;
+    background: #0a0e17;
+    color: #c7d0ff;
+    padding: 40px;
+    background-image: url(images/페이지2_배경.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;;
+
+}
+
+h1{
+    text-align:  center;
+    color: balck;
+}
+
+h2{
+    
+    color: black;
+    border: 6px solid rgb(84, 6, 241);
+    text-align: center;
+    width:300px;
+    font-size: 30px;
+    padding: 8px 0;
+    border-radius: 15px;
+    margin:20px auto;
+}
+
+p, li{
+    font-size: 22px;
+    line-height: 2.0;
+    text-align:left;
+    
+}
+
+nav{
+    text-align: center;
+    margin-top:100px;
+}
+
+nav a {
+    color: white;
+    background: #ff92d0;
+    padding: 10px 20px;;
+    border-radius: 8px;
+    font-weight:800;
+    transition: 0.2s;
+    margin: 0 10px;
+}
+
+nav a:hover {
+    background: rgb(58, 34, 212);
+    color:white;
+}
+
+.hobby{
+    width: 300px;
+    margin: 20px auto;
+    text-align: left;
+    padding: 20px;
+    background: #121829;
+    border-radius: 15px;
+
+}
+
+.personality{
+    width: 300px;
+    margin: 20px auto;
+    text-align: left;
+    padding: 20px;
+    background: #121829;
+    border-radius: 15px;
+}

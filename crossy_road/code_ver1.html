@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>길건너 친구들</title>
+<style>
+  canvas {
+    background-color: #a0e0ff;
+    display: block;
+    margin: 0 auto;
+    border: 2px solid #000;
+  }
+</style>
+</head>
+<body>
+<canvas id="gameCanvas" width="400" height="600"></canvas>
+<script>
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+const player = { x: 180, y: 550, width: 40, height: 40, color: "green" };
+const cars = [];
+let gameOver = false;
+
+// 키 입력
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowUp") player.y -= 40;
+  if (e.key === "ArrowDown") player.y += 40;
+  if (e.key === "ArrowLeft") player.x -= 40;
+  if (e.key === "ArrowRight") player.x += 40;
+});
+
+// 자동차 생성
+function spawnCar() {
+  const lane = Math.floor(Math.random() * 5); // 5차선
+  const speed = 2 + Math.random() * 3;
+  cars.push({ x: -50, y: lane * 100 + 50, width: 50, height: 40, speed: speed, color: "red" });
+}
+
+// 게임 루프
+function update() {
+  if (gameOver) return;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // 자동차 이동
+  for (let i = cars.length - 1; i >= 0; i--) {
+    const car = cars[i];
+    car.x += car.speed;
+    ctx.fillStyle = car.color;
+    ctx.fillRect(car.x, car.y, car.width, car.height);
+
+    // 충돌 체크
+    if (
+      player.x < car.x + car.width &&
+      player.x + player.width > car.x &&
+      player.y < car.y + car.height &&
+      player.y + player.height > car.y
+    ) {
+      gameOver = true;
+      alert("게임 오버!");
+    }
+
+    if (car.x > canvas.width) cars.splice(i, 1);
+  }
+
+  // 플레이어 그리기
+  ctx.fillStyle = player.color;
+  ctx.fillRect(player.x, player.y, player.width, player.height);
+
+  // 승리 조건
+  if (player.y <= 0) {
+    gameOver = true;
+    alert("승리!");
+  }
+
+  requestAnimationFrame(update);
+}
+
+// 1초마다 자동차 생성
+setInterval(spawnCar, 1000);
+
+update();
+</script>
+</body>
+</html>

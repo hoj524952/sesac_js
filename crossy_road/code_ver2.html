@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>길건너 친구들 - 귀여운 버전</title>
+<style>
+  body { margin: 0; background-color: #87ceeb; }
+  canvas { display: block; margin: 0 auto; border: 3px solid #333; background: #a0e0ff; }
+</style>
+</head>
+<body>
+<canvas id="gameCanvas" width="600" height="800"></canvas>
+<script>
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+const player = { x: 280, y: 750, size: 40, targetX: 280, targetY: 750, color: "#ff6f61" };
+const cars = [];
+let gameOver = false;
+
+// 키 입력
+document.addEventListener("keydown", (e) => {
+  if (gameOver) return;
+  const step = 60;
+  if (e.key === "ArrowUp") player.targetY -= step;
+  if (e.key === "ArrowDown") player.targetY += step;
+  if (e.key === "ArrowLeft") player.targetX -= step;
+  if (e.key === "ArrowRight") player.targetX += step;
+
+  // 화면 밖으로 안 나가게
+  player.targetX = Math.max(0, Math.min(canvas.width - player.size, player.targetX));
+  player.targetY = Math.max(0, Math.min(canvas.height - player.size, player.targetY));
+});
+
+// 자동차 생성
+function spawnCar() {
+  const lane = Math.floor(Math.random() * 6); // 6차선
+  const speed = 2 + Math.random() * 3;
+  const carWidth = 80;
+  const carHeight = 40;
+  cars.push({ x: -carWidth, y: lane * 120 + 60, width: carWidth, height: carHeight, speed, color: "#ffcc00" });
+}
+
+// 플레이어 부드럽게 이동
+function updatePlayer() {
+  const lerpFactor = 0.2;
+  player.x += (player.targetX - player.x) * lerpFactor;
+  player.y += (player.targetY - player.y) * lerpFactor;
+}
+
+// 게임 루프
+function update() {
+  if (gameOver) return;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // 배경 그리기 (길과 풀)
+  for (let i = 0; i < 6; i++) {
+    ctx.fillStyle = i % 2 === 0 ? "#555" : "#6cbb3c"; // 길과 풀 번갈아
+    ctx.fillRect(0, i * 120 + 40, canvas.width, 120);
+  }
+
+  // 자동차 이동
+  for (let i = cars.length - 1; i >= 0; i--) {
+    const car = cars[i];
+    car.x += car.speed;
+    ctx.fillStyle = car.color;
+    ctx.beginPath();
+    ctx.roundRect(car.x, car.y, car.width, car.height, 10); // 둥근 사각
+    ctx.fill();
+
+    // 충돌 체크
+    if (
+      player.x < car.x + car.width &&
+      player.x + player.size > car.x &&
+      player.y < car.y + car.height &&
+      player.y + player.size > car.y
+    ) {
+      gameOver = true;
+      alert("게임 오버!");
+    }
+
+    if (car.x > canvas.width) cars.splice(i, 1);
+  }
+
+  // 플레이어 그리기 (둥근 캐릭터)
+  updatePlayer();
+  ctx.fillStyle = player.color;
+  ctx.beginPath();
+  ctx.arc(player.x + player.size / 2, player.y + player.size / 2, player.size / 2, 0, Math.PI * 2);
+  ctx.fill();
+
+  // 승리 조건
+  if (player.y <= 0) {
+    gameOver = true;
+    alert("승리!");
+  }
+
+  requestAnimationFrame(update);
+}
+
+// 자동차 생성 주기
+setInterval(spawnCar, 1000);
+
+update();
+</script>
+</body>
+</html>
