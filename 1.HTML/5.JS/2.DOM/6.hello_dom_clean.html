@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>헬로우 DOM</h1>
+    <button onclick="sayHello()">Hello</button>
+
+    <div id="result"></div>
+
+    <!-- <B>say 헬로우</B> -->
+    <script>
+        function sayHello(){
+            // let result_div = document.getElementById("result");
+
+            // result_div.innerHTML = "";
+
+            // result_div.innerHTML += "say 헬로우";
+            
+            // 이걸 한줄로 표현하면
+
+            document.getElementById("result").innerHTML = "say 헬로우";
+
+        }
+
+        
+
+
+    </script>
+</body>
+</html>
