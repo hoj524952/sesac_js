@@ -4,14 +4,18 @@
     box-sizing: border-box;
 }
 
+form {
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+}
+
 body { 
     display:flex;;
-    font-family: Arial, serif;
+    font-family: 'Jost', serif;
     background: linear-gradient();
     height:100vh;
     justify-content: center;
     align-items: center;
-    background-image: url(images/로그인2.jpg);
+    background: #000;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
