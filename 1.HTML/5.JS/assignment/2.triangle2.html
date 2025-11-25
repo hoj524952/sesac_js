@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+
+    </div>
+
+    <script>
+        const left = "left";
+        const right = "right";
+        const downLeft = "downLeft";
+        const downRight = "downRight";
+
+        function drawTriangle2(line, shape) {
+            if(shape == left) {
+                for(let i = 1; i <= line; i++) {
+                    console.log("*".repeat(i) + "\n");
+            }
+        }
+            else if(shape == right) {
+                for(let i = 1; i <= line; i++){
+                    console.log(" ".repeat(line-i) + "*".repeat(i) + "\n")
+                    
+                }
+            }
+            else if(shape == downLeft) {
+                for(let i = line; i > 0; i--) {
+                    console.log("*".repeat(i) + "\n");
+                    
+                }
+            }
+            else if(shape == downRight) {
+                for(let i = 0; i <= line; i++) {
+                    console.log(" ".repeat(i) + "*".repeat(line - i))
+                }
+            }
+        }
+
+
+
+        drawTriangle2(5, left);
+        drawTriangle2(3, right);
+        drawTriangle2(4, downLeft);
+        drawTriangle2(7, downRight);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #myDiv {
+            width: 200px;
+            height: 200px;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <div id="myDiv">마우스를 올릴 공간</div>
+    <script>
+        document.getElementById("myDiv").addEventListener("mouseover", () => {
+            console.log("마우스가 올라옴.")
+        });
+
+        document.getElementById("myDiv").addEventListener("mouseout", () => {
+            console.log("마우스가 나감.")
+        });
+
+        document.getElementById("myDiv").addEventListener("mousemove", (ev) => {
+            console.log("마우스가 움직임.");
+            // console.log("마우스가 움직이는 동안의 정보를 담아서 줄 곳", ev)
+            console.log(`마우스의 좌표: X=${ev.clientX}, Y=${ev.clientY}`);
+        });
+
+
+    </script>
+</body>
+</html>

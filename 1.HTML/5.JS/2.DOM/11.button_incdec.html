@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>버튼을 통한 숫자 제어</h1>
+    <input type="text" value="hello" placeholder="숫자/글자 아무거나 입력하시오">
+    <div id="value">0</div>
+    <div>
+        <button onclick = "plus()">+1</button>
+        <button onclick = "minus()">-1</button>
+    </div>
+    <script>
+        function plus() {
+            // console.log("1 증가")
+            // 1. DOM을 가져온다
+            let value = document.getElementById("value");
+            // console.log(value.innerText);
+
+            // 2. 계산한다.
+
+            plusValue = Number(value.innerText) + 2;
+            // 3. 다시 DOM에다가 결과를 쓴다.
+            console.log(plusValue);
+
+            value.innerText = plusValue;
+            
+        }
+
+        function minus() {
+            let value = document.getElementById("value");
+
+            minusValue = Number(value.innerText) - 2;
+
+            console.log(minusValue);
+
+            value.innerText = minusValue;
+
+        }
+    </script>
+</body>
+</html>

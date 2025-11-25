@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container-grid {
+            display:grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            border: 1px solid black;
+            height: 300px;
+            width: 300px;
+            text-align: center;
+            
+        }
+        div {
+            border: 1px solid black;
+        
+        }
+        input {
+            width: 250px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="text" id="input" placeholder="입력">
+    
+    <div class="container-grid">
+        <button  onclick="add()">+</button>
+        <button  onclick="minus()">-</button>
+        <button  onclick="multiply()">*</button>
+        <button  onclick="division()">/</button>
+        <button  onclick="seven()">7</button>
+        <button  onclick="eight()">8</button>
+        <button  onclick="nine()">9</button>
+        <button  onclick="equals()">=</button>
+        <button  onclick="four()">4</button>
+        <button  onclick="five()">5</button>
+        <button  onclick="six()">6</button>
+        <button  onclick="clearAll()">C</button>
+        <button  onclick="one()">1</button>
+        <button  onclick="two()">2</button>
+        <button  onclick="three()">3</button>
+        <button  onclick="zero()">0</button>
+
+    </div>
+    <script>
+        let result = 0;
+        let inputValue = document.getElementById("input");
+        let currentInput = "";
+        let operator = "";
+        function pressNumber(num) {
+            currentInput += num;
+            inputValue = currentInput;
+            
+        }
+
+        function clearAll() {
+            result = 0;
+            inputValue.value = "";
+            currentInput = "";
+            operator = "";
+        }
+
+
+        function add() {
+            if (currentInput !== "") {
+                if(operator){
+                    calculate();
+                }
+                else {
+                    result = inputValue.value;
+                }
+            }
+            operator = "+";
+            inputValue.value ="";
+            currentInput = "";
+        }
+
+        function minus() {
+            if (currentInput !== "") {
+                if(operator){
+                    calculate();
+                }
+                else {
+                    result = inputValue.value;
+                }
+            }   
+            operator = "-";
+            inputValue.value = "";
+            currentInput = "";
+        }
+
+        function multiply() {
+            if(result == 0 && operator == "*") {
+                result = num;
+            }
+            else {
+                result *= num;
+            }
+            
+            operator = "*"
+            inputValue.value = "";
+            currentInput = "";
+        }
+        function division() {
+            if(result == 0 && operator == "*") {
+                result = num;
+            }
+            else {
+                result *= num;
+            }
+            operator = "/"
+            inputValue.value = "";
+            currentInput = "";
+        }
+
+        function calculate() {
+            let num = Number(currentInput);
+            if(operator == "+") {
+                result += num;
+            }
+            else if(operator == "-") {
+                result -= num;
+            }
+            else if(operator == "*") {
+                result *= num;
+            }
+            else if(operator == "/") {
+                result /= num;
+            }
+            else {
+                result = num;
+            }
+        }
+
+        function one() {
+            pressNumber(1);
+        }
+        
+        function two() {
+            pressNumber(2);
+        }
+        
+        function three() {
+            pressNumber(3);
+        }
+        
+        function four() {
+            pressNumber(4);
+        }
+        
+        function five() {
+            pressNumber(5);
+        }
+        
+        function six() {
+            pressNumber(6);
+        }
+        
+        function seven() 
+        {
+            pressNumber(7);
+        }
+        
+        function eight() {
+            pressNumber(8);
+        }
+        
+        function nine() {
+            pressNumber(9);
+        }
+        
+        function zero() {
+            pressNumber(0);
+        }
+        
+        function equals() {
+            calculate();
+            inputValue.value = result;
+            currentInput = "";
+        }
+
+    </script>    
+</body>
+</html>

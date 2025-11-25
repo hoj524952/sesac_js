@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border: 1px solid black;
+            border-collapse: collapse; /* 셀 간의 경계를 무너트림 */
+        }
+        td {
+            padding: 10px;
+            border: 1px solid black;
+        }
+        div {
+            padding-left: 0px;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>테이블을 DOM 으로 제어해보기</h1>
+    <table>
+        <tr>
+            <td>셀 1</td>
+            <td>셀 2</td>
+            <td>셀 3</td>
+        </tr>
+        <tr>
+            <td>셀 4</td>
+            <td>셀 5</td>
+            <td>셀 6</td>
+        </tr>
+        <tr>
+            <td>셀 7</td>
+            <td>셀 8</td>
+            <td>셀 9</td>
+        </tr>
+        <tr>
+            <td>셀 10</td>
+            <td>셀 11</td>
+            <td>셀 12</td>
+        </tr>
+    </table>
+    <div>
+        <button onclick="changeCellColorYellow()">셀 색상 모두 변경(노랑)</button>
+    </div>
+    <div>
+        <button onclick="changeCellColorRed()">짝수셀 색상 모두 변경(빨강)</button>
+    </div>
+    <div>
+        <button onclick="changeCellColorBlue()">홀수셀 색상 모두 변경(파랑)</button>
+    </div>
+    <script>
+        function changeCellColorYellow(){
+            // let cells = document.getElementById("cellId");
+            let cells = document.getElementsByTagName("td");
+            // 모든 td들이 다 온다.. 그럼 이건 어디에서 담겨서, 어떤 자료구조로 올 것인가???
+            // 쉬운말로는 리스트, 전문 개발용어로는 이걸 배열(Array) 이라고 부른다.
+            console.log(cells);
+            // 지금 담겨 있는 건 cells = [td, td, td, ...]
+            // cells.style.backgroundColor = "lightblue";
+
+            // [td, td, td, ...].style.backgroundColor = "lightblue";
+
+            // 그래서, 이렇게 하면 적용을 못하니 개별 요소(element) 하나하나에 따로 적용
+            // 개별 요소를 가져오는 방법은 -> 인덱스
+            // cells[0].style.backgroundColor = "lightblue";
+            // cells[1].style.backgroundColor = "lightblue";
+            for(i=0;i<cells.length; i++){
+                cells[i].style.backgroundColor = "yellow";
+            }
+
+        }
+        function changeCellColorRed(){
+            // let cells = document.getElementById("cellId");
+            let cells = document.getElementsByTagName("td");
+            // 모든 td들이 다 온다.. 그럼 이건 어디에서 담겨서, 어떤 자료구조로 올 것인가???
+            // 쉬운말로는 리스트, 전문 개발용어로는 이걸 배열(Array) 이라고 부른다.
+            console.log(cells);
+            // 지금 담겨 있는 건 cells = [td, td, td, ...]
+            // cells.style.backgroundColor = "lightblue";
+
+            // [td, td, td, ...].style.backgroundColor = "lightblue";
+
+            // 그래서, 이렇게 하면 적용을 못하니 개별 요소(element) 하나하나에 따로 적용
+            // 개별 요소를 가져오는 방법은 -> 인덱스
+            // cells[0].style.backgroundColor = "lightblue";
+            // cells[1].style.backgroundColor = "lightblue";
+            for(i=1;i<cells.length; i += 2){
+                cells[i].style.backgroundColor = "red";
+                console.log(i)
+            }
+
+        }
+        function changeCellColorBlue(){
+            // let cells = document.getElementById("cellId");
+            let cells = document.getElementsByTagName("td");
+            // 모든 td들이 다 온다.. 그럼 이건 어디에서 담겨서, 어떤 자료구조로 올 것인가???
+            // 쉬운말로는 리스트, 전문 개발용어로는 이걸 배열(Array) 이라고 부른다.
+            console.log(cells);
+            // 지금 담겨 있는 건 cells = [td, td, td, ...]
+            // cells.style.backgroundColor = "lightblue";
+
+            // [td, td, td, ...].style.backgroundColor = "lightblue";
+
+            // 그래서, 이렇게 하면 적용을 못하니 개별 요소(element) 하나하나에 따로 적용
+            // 개별 요소를 가져오는 방법은 -> 인덱스
+            // cells[0].style.backgroundColor = "lightblue";
+            // cells[1].style.backgroundColor = "lightblue";
+            for(i=0;i<cells.length; i++){
+                if(i % 2 == 0){
+                cells[i].style.backgroundColor = "blue";
+                }
+            }
+
+        }
+    </script>
+</body>
+</html>

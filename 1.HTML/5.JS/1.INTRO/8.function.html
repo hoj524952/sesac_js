@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>함수 제대로 이해하기</h1>
+    <script>
+        let a = 2;
+        let b = 3;
+
+        function add(a, b) {
+            let sum = a + b;
+            return sum;
+            // console.log("a와 b의 합은 " + sum + "입니다");
+        }
+        
+        function disPlayResultKR(result){
+            console.log("결과는 " + result + " 입니다");
+        }
+        function disPlayResultEN(result){
+            console.log("The result is " + result + ".");
+        }
+        function disPlayResultWithLang(result, lang){
+
+            if (lang == "KR"){
+            console.log("결과는 " + result + " 입니다");
+            }
+            else if (lang == "EN"){
+            console.log("The result is " + result + ".");
+            }
+            else {
+            console.log("아직 지원되지 않는 언어입니다.");
+            }
+        }
+    
+
+        let result = add(a, b);
+        // console.log("합은 " + result + " 입니다.");
+        disPlayResultKR(result);
+        disPlayResultEN(result);
+        disPlayResultWithLang(result, "KR");
+        disPlayResultWithLang(result, "EN");
+        disPlayResultWithLang(result, "JP");
+    </script>
+</body>
+</html>
