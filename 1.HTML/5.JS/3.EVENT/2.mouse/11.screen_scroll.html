@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #content {
+            height: 2000px;
+            background: linear-gradient(to bottom, #ffcc00 0%, #ff6600 100%);
+        }
+    </style>
+</head>
+<body>
+    <div id="content"></div>
+    <script>
+        // DOM에 이벤트를 등록할수도 있고, 브라우저
+
+        window.addEventListener("scroll", () => {
+            console.log("페이지 스크롤 중");
+            const scrollPosition = window.pageYoffSet;
+            console.log(`현재 스크롤 포지션: ${scrollPosition}`);
+
+            const scrollPosition2 = document.documentElement.scrollTop;
+            console.log(`현재 스크롤 포지션2: ${scrollPosition2}`);
+
+
+            const scrollPos = window.pageYoffSet || document.documentElement.scrollTop;
+            console.log(`적어도 둘 중 하나는 나옴: ${scrollPos}`);
+
+        })
+    </script>
+</body>
+</html>

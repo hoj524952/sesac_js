@@ -1,0 +1,47 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            .gallery {
+                width: 100px;
+                height: 200px;
+                margin: 5px;
+                cursor: pointer;
+            }
+
+            #large-image {
+                display: none;
+                margin: 10px auto;
+                max-width: 400px;
+                max-height: 400px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <h1>이미지 갤러리</h1>
+        <div class="gallery">
+            <img id="img1" src="images/강아지1.jpg">
+            <img id="img2" src="images/강아지2.jpg">
+            <img id="img3" src="images/강아지3.jpg">
+        </div>
+
+        <img id="large-image" src="" alt="큰 이미지">
+        
+        
+    <script>
+        const images = document.querySelectorAll('.gallery img');
+        const largeimage = document.getElementById("large-image");
+
+        images.forEach(function(img) {
+            img.addEventListener('click', function() {
+            largeimage.src = this.src;
+            largeimage.style.display = 'block';          
+            });
+        });
+    </script>
+    </body>
+    </html>

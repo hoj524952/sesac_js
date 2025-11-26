@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #image {
+            display: flex;
+            width: 500px;
+            height: 500px;;
+            margin: 0 auto;
+            transform: translateX(50);
+            transform: translateY(30);
+            transition: opacity 0.5s linear;
+        }
+
+        .buttons {
+            margin: 0 10px;
+            display: flex;
+            justify-content: center;
+        }
+        h1 {
+            justify-content: center;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>이미지갤러리 이동</h1>
+    
+    <div class="gallery">
+        <img id="image" src="images/강아지1.jpg">
+        <div class="buttons">
+            <button id="prev">prev</button>
+            <button id="next">next</button>
+        </div>
+    </div>
+
+
+    <script>
+        const prevBtn = document.getElementById('prev');
+        const nextBtn = document.getElementById('next');
+        const images = ["images/강아지1.jpg", "images/강아지2.jpg", "images/강아지3.jpg"];
+        
+        let currentIndex = 0;
+        prevBtn.addEventListener('click', () =>  {
+            image.style.opacity = 0;
+            currentIndex--;
+            images.forEach((src, index) => {
+                if(index == currentIndex) {
+                    image.src = src;
+                    setTimeout(() => {
+                        image.src = images[currentIndex];
+                        image.style.opacity = 1;
+                    }, 500);
+                    
+                }
+                if(currentIndex < 0){
+                    currentIndex = images.length - 1;
+                    setTimeout(() => {
+                        image.src = images[currentIndex];
+                        image.style.opacity = 1;
+                    }, 500);
+                }
+                    
+                    
+                    
+                })
+            })
+        nextBtn.addEventListener('click', () => {
+            
+            image.style.opacity = 0;
+            currentIndex++;
+            images.forEach((src, index) => {
+                if(index == currentIndex) {
+                    image.src = src;
+                    setTimeout(() => {
+                        image.src = images[currentIndex];
+                        image.style.opacity = 1;
+                    }, 500);
+                }
+                if(currentIndex >= images.length)
+                {
+                    currentIndex = 0;
+                    image.src = src;
+                    setTimeout(() => {
+                        image.src = images[currentIndex];
+                        image.style.opacity = 1;
+                    }, 500);
+                    
+                }
+            })
+        })
+
+        
+
+
+    </script>
+</body>
+</html>
