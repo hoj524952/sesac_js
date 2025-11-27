@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+
+    </style>
 </head>
 <body>
     <h1>투두리스트</h1>
@@ -14,13 +17,43 @@
 
     <script>
 
-
+        const input = document.getElementById('newTodo');
         const addBtn = document.getElementById('addTodo');
 
         addBtn.addEventListener('click', () => {
-            
+
             const newTodo = document.getElementById('newTodo').value;
-            console.log(newTodo);
+            // console.lo(gnewTodo);
+
+            const todoList = document.getElementById('todoList');
+            if(newTodo.trim() === ""){
+                return;
+            }
+
+            const newLi = document.createElement('li');
+            newLi.textContent = newTodo;
+            todoList.appendChild(newLi);
+
+            input.value = "";
+
+        })
+        
+        input.addEventListener('keyup', (ev) => {
+            if(ev.key == 'Enter') {
+            const newTodo = document.getElementById('newTodo').value;
+            // console.lo(gnewTodo);
+
+            const todoList = document.getElementById('todoList');
+            if(newTodo.trim() == ""){
+                return;
+            }
+
+            const newLi = document.createElement('li');
+            newLi.textContent = newTodo;
+            todoList.appendChild(newLi);
+
+            input.value = "";
+            }
         })
     </script>
 </body>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            font-family: serif;
+        }
+        #todoList > li {
+            display: flex;
+            padding-left: 2px;
+            cursor: pointer;
+            width:150px;
+            
+        }
+        li::before {
+            content: "✔";
+            margin-right: 5px;
+        }
+
+        li.done {
+            text-decoration: line-through;
+            color:brown;
+        }
+        li:hover {
+            background-color: thistle;
+        }
+
+        button {
+            padding: 5px;
+            margin-left: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>투두리스트</h1>
+    <input type="text" id="newTodo" placeholder="할일을 입력하시오">
+    <button id="addTodo">입력</button>
+    <!-- 할 일들을 표시할 예정 -->
+    <ul id="todoList"></ul>
+
+    <script>
+
+        const input = document.getElementById('newTodo');
+        const addBtn = document.getElementById('addTodo');
+        
+
+        addBtn.addEventListener('click', () => {
+            const delBtn = document.createElement('button');
+            delBtn.textContent = '삭제';
+            const newTodo = document.getElementById('newTodo').value;
+            const editBtn = document.createElement('button');
+            editBtn.textContent = '수정';
+            const todoList = document.getElementById('todoList');
+            if(newTodo.trim() === ""){
+                return;
+            }
+
+            const newLi = document.createElement('li');
+            newLi.textContent = newTodo;
+
+            delBtn.addEventListener('click', () => {
+                newLi.remove();
+            })
+            newLi.addEventListener('click', () => {
+                newLi.classList.toggle('done');
+            });
+            todoList.appendChild(newLi);
+            newLi.appendChild(delBtn);
+
+            input.value = "";
+
+        })
+        
+        input.addEventListener('keyup', (ev) => {
+            if(ev.key == 'Enter') {
+            const newTodo = document.getElementById('newTodo').value;
+            const delBtn = document.createElement('button');
+            delBtn.textContent = '삭제';
+
+            const editBtn = document.createElement('button');
+            editBtn.textContent = '수정';
+            const todoList = document.getElementById('todoList');
+            if(newTodo.trim() == ""){
+                return;
+            }
+
+            const newLi = document.createElement('li');
+            newLi.textContent = newTodo;
+
+
+            delBtn.addEventListener('click', () => {
+                newLi.remove();
+            })
+            newLi.addEventListener('click', () => {
+                newLi.classList.toggle('done');
+            });
+            todoList.appendChild(newLi);
+            newLi.appendChild(delBtn);
+            input.value = "";
+            }
+
+        })
+    </script>
+</body>
+</html>
