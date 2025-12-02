@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        .wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            width: 600px;
+        }
+        .dropZone {
+            width: 200px;
+            height: 200px;
+            background-color: aquamarine;
+            border: 2px dotted #cccccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        #dragItem {
+            display: flex;
+            width: 100px;
+            height: 50px;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+            z-index: 1;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .dropContent {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>드래그앤드롭_최종</h1>
+    <div class="wrapper">
+        <div class="dropZone">
+            <span class="dropContent">여기에 놓으세요.</span>
+            <div id="dragItem" draggable="true">드래그</div>
+        </div>
+        
+        <div class="dropZone">
+            <span class="dropContent">여기에 놓으세요.</span>
+        </div>
+        <div class="dropZone">
+            <span class="dropContent">여기에 놓으세요.</span>
+        </div>
+        <div class="dropZone">
+            <span class="dropContent">여기에 놓으세요.</span>
+        </div>
+    </div>
+
+
+    <script>
+        const dragItem = document.getElementById('dragItem');
+        const dropZones = document.querySelectorAll('.dropZone');
+
+        dragItem.addEventListener('dragstart', () => {
+            console.log('드래그 시작');
+        });
+
+        dropZones.forEach(zone => {
+            zone.addEventListener('dragover', (ev) => {
+                ev.preventDefault();
+                console.log('드래그 중');
+            });
+        });
+
+        dropZones.forEach(zone => {
+            zone.addEventListener('drop', (ev) => {
+                ev.preventDefault();
+                zone.appendChild(dragItem);
+            });
+        });
+    </script>
+</body>
+</html>

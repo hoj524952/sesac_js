@@ -5,4 +5,5 @@ function gugudan() {
     }
 }
 
-gugudan();
+gugudan(2);
+gugudan(5);

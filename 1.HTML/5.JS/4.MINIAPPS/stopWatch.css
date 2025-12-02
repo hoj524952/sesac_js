@@ -55,5 +55,28 @@ body {
 }
 
 .stopWatchShape {
-    
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 0 20px 30px rgba(0,0,0, 0.4);
+    border: 2px solid bisque;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.stopWatchShape::before {
+    content: "";
+    width: 50px;
+    background: #444;
+    height: 20px;
+    position: absolute;
+    top: -20px;
+}
+
+.stopWatchShape::after {
+    content: "";
+    width: 15px;
+    height: 30px;
+    background: #888;
 }
