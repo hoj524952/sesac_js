@@ -18,8 +18,8 @@ class User {
         // this.items.map(item => {
         //     console.log(item.product);
         //     console.log(item.quantity);
-
-        }
+    return this.orderHistory.map(order => order.getOrderSummary());
+    }
 }
 
 

@@ -1,0 +1,14 @@
+{
+  
+  "name": "2.uuid",
+  "version": "1.0.0",
+  "description": "",
+  "main": "1.uuid.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}
