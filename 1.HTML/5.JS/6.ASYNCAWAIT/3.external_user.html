@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>사용자 조회</h2>
+    <input type="number" id="userId" placeholder="사용자ID를 입력하세요">
+    <button id="loadContent">불러오기</button>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('loadContent').addEventListener('click', async () => {
+            const userId = document.getElementById('userId').value;
+            const requestURL = `https://jsonplaceholder.typicode.com/users/${userId}`
+
+            // 아래 4줄을 가지고 await, async로 변경
+            const response = await fetch(requestURL);
+            
+            if (!response.ok) {
+                throw new Error('네트워크 오류')
+            }
+            console.log(data);
+            const data = await response.json();
+            document.getElementById('result').innerHTML = `
+                <p><strong>이름:</strong> ${data.name}</p>
+                <p><strong>이메일:</strong> ${data.email}</p>
+                <p><strong>전화번호:</strong> ${data.phone}</p>
+                <p><strong>웹사이트:</strong> ${data.website}</p>
+            `
+        });
+        
+        async function checkResponseStatus(response) {
+            try {
+                data = await response.json();
+
+            } catch(err) {
+                console.log('파싱 오류');
+            }
+        }
+    </script>
+</body>
+</html>
